@@ -42,7 +42,7 @@ def batch_extract(images_path, pickled_db_path="features.dsc"):
     result = {}
     for f in files:
         print ('Extracting features from image %s' % f)
-        name = f.lower()
+        name = f
         result[name] = extract_features(f)
     
     # saving all our feature vectors in pickled file

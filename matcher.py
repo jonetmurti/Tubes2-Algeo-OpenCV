@@ -61,5 +61,4 @@ class Matcher(object):
         nearest_ids = np.argsort(img_distances)[:topn]
         nearest_img_paths = [self.names[i] for i in nearest_ids]
         nearest_img_distances = [img_distances[i] for i in nearest_ids]
-        print(nearest_img_paths)
         return nearest_img_paths, nearest_img_distances

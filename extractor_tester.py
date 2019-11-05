@@ -8,4 +8,6 @@ try:
 except Exception as e:
     print ('Error: ', e)
 
+files = [os.path.join(images_path, p) for p in sorted(os.listdir(images_path))]
+
 extractor.batch_extract(images_path)
