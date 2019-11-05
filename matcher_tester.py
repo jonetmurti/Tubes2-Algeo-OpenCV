@@ -4,6 +4,7 @@ import matcher
 
 def show_img(path):
     img = cv2.imread(path)
+    print(img)
     cv2.imshow(path, img)
     cv2.waitKey()
 
