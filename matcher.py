@@ -32,7 +32,7 @@ class Matcher(object):
                 vec_squaresum += vector[i] ** 2
 
             cos = dot / (math.sqrt(dsc_squaresum) * math.sqrt(vec_squaresum))
-            result.append(cos)
+            result.append(1 - cos)
 
         return result
 
@@ -58,8 +58,7 @@ class Matcher(object):
             img_distances = self.cos_cdist(features)
 
         # getting top n records
-        nearest_ids = np.argsort(img_distances)[:-topn-1:-1]
+        nearest_ids = np.argsort(img_distances)[:topn]
         nearest_img_paths = [self.names[i] for i in nearest_ids]
         nearest_img_distances = [img_distances[i] for i in nearest_ids]
-
         return nearest_img_paths, nearest_img_distances
