@@ -11,6 +11,7 @@ from PIL import Image, ImageTk, ImageOps
 filename = None
 labfile = None
 label = None
+frame0 = None
 
 def openFile():
     # Global Variable
@@ -37,7 +38,9 @@ def firstPage():
     global frame1
     global match_algo
 
-    frame1 = Frame(root, bg="white")
+    if(frame0 != None) :
+        frame0.destroy()
+    frame1 = Frame(root)
     frame1.grid()
     # Label Method
     greet = Label(frame1, text="Choose a method :", font = ('Arial', 10))
@@ -90,10 +93,7 @@ def MatchProcess(algo, im_path, data_path, nb) :
     global text1
     global frame0
 
-    print(im_path)
-    print(data_path)
-    print(algo)
-    print(nb)
+    frame1.destroy()
     if (algo > 1):
         print("Algorithm not available!")
         exit
@@ -106,9 +106,9 @@ def MatchProcess(algo, im_path, data_path, nb) :
         for cos in range(len(match)) :
             match[cos] = 1 - match[cos]
     
-    frame0 = Frame(root, bg="white")
+    frame0 = Frame(root)
     frame0.grid()
-    back = Button(frame0, text="back", padx=10, pady=10, command=None)
+    back = Button(frame0, text="back", padx=10, pady=10, command=firstPage)
     back.grid(row=0, column=0)
 
     #frame1 = Frame(root, bg="white")
@@ -116,7 +116,7 @@ def MatchProcess(algo, im_path, data_path, nb) :
     add = Image.open(im_path)
     add = ImageOps.fit(add, (300, 300), Image.ANTIALIAS)
     pict2 = ImageTk.PhotoImage(add)
-    canvas2 = Canvas(frame0, width=350, height=380, bg = "white", bd=1)
+    canvas2 = Canvas(frame0, width=350, height=380, bd=2)
     canvas2.grid(row=1, column=0, columnspan=2)
     img2 = canvas2.create_image(30, 20, image=pict2, anchor=NW)
     canvas2.image=pict2
@@ -126,7 +126,7 @@ def MatchProcess(algo, im_path, data_path, nb) :
     add = Image.open(names[0])
     add = ImageOps.fit(add, (300, 300), Image.ANTIALIAS)
     pict1 = ImageTk.PhotoImage(add)
-    canvas1 = Canvas(frame0, width=350, height=380, bg = "white", bd=1)
+    canvas1 = Canvas(frame0, width=350, height=380, bd=2)
     canvas1.grid(row=1, column=2, columnspan=2)
     img1 = canvas1.create_image(30, 20, image=pict1, anchor=NW)
     canvas1.image=pict1
@@ -137,9 +137,9 @@ def MatchProcess(algo, im_path, data_path, nb) :
     #frame2 = Frame(root, bg="white")
     #frame2.pack(fill=X)
     prev = Button(frame0, text="Prev", command=dec)
-    prev.grid(row=2, column=1)
+    prev.grid(row=2, column=1, padx=5, pady=50)
     nex = Button(frame0, text="Next", command=inc)
-    nex.grid(row=2, column=2)
+    nex.grid(row=2, column=2, padx=5, pady=50)
 
 #def show_frame(cont):
 #        if (cont == 0) :
@@ -177,5 +177,6 @@ def dec() :
     canvas1.text=x
 
 root = Tk()
+root.title("Face Rocegnition")
 firstPage()
 root.mainloop()
