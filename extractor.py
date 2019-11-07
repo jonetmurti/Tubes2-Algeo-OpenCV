@@ -10,10 +10,10 @@ def extract_features(image_path, vector_size=32):
     '''
     image = cv2.imread(image_path)
     try:
-        alg = cv2.KAZE_create()
-        kps = alg.detect(image)
-        kps = sorted(kps, key=lambda x: -x.response)[:vector_size]
-        kps, dsc = alg.compute(image, kps)
+        kaze = cv2.AKAZE_create()
+        key = kaze.detect(image)
+        key = sorted(key, key=lambda x: -x.response)[:vector_size]
+        key, dsc = kaze.compute(image, key)
         dsc = dsc.flatten()
         needed_size = (vector_size * 64)
         if dsc.size < needed_size:

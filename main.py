@@ -141,12 +141,6 @@ def MatchProcess(algo, im_path, data_path, nb) :
     nex = Button(frame0, text="Next", command=inc)
     nex.grid(row=2, column=2, padx=5, pady=50)
 
-#def show_frame(cont):
-#        if (cont == 0) :
-#            currframe = frame0
-#        elif (cont == 1) :
-#            currframe = frame0
-#        currframe.tkraise()
 
 def inc() :
     global i
@@ -177,6 +171,6 @@ def dec() :
     canvas1.text=x
 
 root = Tk()
-root.title("Face Rocegnition")
+root.title("Crowd Face Rocegnition")
 firstPage()
 root.mainloop()
