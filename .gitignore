@@ -125,6 +125,3 @@ dmypy.json
 .pyre/
 
 #   Folder
-images/
-test/
-features.dsc
